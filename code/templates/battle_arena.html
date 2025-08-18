@@ -1,0 +1,208 @@
+<!-- templates/battle_arena.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Battle Arena - Prompt Arena</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* Battle Arena Specific Styles */
+    .battle-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(15, 15, 35, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 195, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .battle-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      border-radius: 20px;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .badge.level {
+      background: rgba(0, 195, 255, 0.2);
+      color: #00c3ff;
+      border: 1px solid #00c3ff;
+    }
+
+    .badge.mode {
+      background: rgba(122, 76, 255, 0.2);
+      color: #7a4cff;
+      border: 1px solid #7a4cff;
+    }
+
+    .topic-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #ccc;
+    }
+
+    .prompt-form {
+      margin-top: 20px;
+    }
+
+    textarea#user_prompt {
+      width: 100%;
+      height: 200px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      color: white;
+      font-family: 'Roboto', monospace;
+      font-size: 16px;
+      resize: vertical;
+    }
+
+    textarea#user_prompt:focus {
+      outline: none;
+      border-color: #00c3ff;
+      box-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      padding: 14px 28px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(145deg, #00c3ff, #7a4cff);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      color: #00c3ff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Timer (Optional) */
+    .timer {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      color: #ff4de0;
+      text-align: center;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
+
+  <div class="battle-container">
+    <div class="battle-header">
+      <h1><i class="fas fa-dice-d6"></i> ⚔️ Battle Arena</h1>
+      <div>
+        <span class="badge level"><i class="fas fa-star"></i> {{ level }}</span>
+        <span class="badge mode"><i class="fas fa-users"></i> {{ battle_type }}</span>
+      </div>
+      <p>Welcome, <strong>{{ user.first_name }}</strong> — your creativity is your weapon.</p>
+    </div>
+
+    <!-- Optional Timer -->
+    <!-- <div class="timer" id="countdown">Time: 05:00</div> -->
+
+    <!-- Challenge Topic -->
+    <div class="topic-card">
+      <strong>🎯 Challenge:</strong><br>
+      {{ topic }}
+    </div>
+
+    <!-- Prompt Submission Form -->
+    <form method="POST" action="{{ url_for('battle_arena') }}" class="prompt-form">
+      <label for="user_prompt"><i class="fas fa-edit"></i> Write Your Prompt</label>
+      <textarea 
+        id="user_prompt" 
+        name="user_prompt" 
+        placeholder="Type your creative prompt here... Be original, clear, and engaging!"
+        required></textarea>
+
+      <button type="submit" class="submit-btn">
+        <i class="fas fa-bolt"></i> Submit Prompt for Evaluation
+      </button>
+    </form>
+
+    <a href="{{ url_for('prompting_space') }}" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Prompting Space
+    </a>
+  </div>
+
+  <!-- Optional: Sound on Submit -->
+  <audio id="submitSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
+
+  <script>
+    // Play sound on submit
+    document.querySelector('form').addEventListener('submit', function() {
+      const sound = document.getElementById('submitSound');
+      sound.currentTime = 0;
+      sound.play().catch(e => console.log("Audio blocked"));
+    });
+
+    // Optional: Countdown Timer (5 minutes)
+    /*
+    let timeLeft = 5 * 60; // 5 minutes
+    const timerDisplay = document.getElementById('countdown');
+    const timer = setInterval(() => {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      timerDisplay.textContent = `Time: ${mins}:${secs < 10 ? '0' + secs : secs}`;
+      timeLeft--;
+
+      if (timeLeft < 0) {
+        clearInterval(timer);
+        alert("Time's up! Submit your prompt.");
+      }
+    }, 1000);
+    */
+  </script>
+
+</body>
+</html>

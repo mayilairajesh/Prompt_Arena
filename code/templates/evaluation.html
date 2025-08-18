@@ -1,0 +1,136 @@
+<!-- templates/evaluation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evaluation Result - Prompt Arena</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .result-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(15, 15, 35, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 195, 255, 0.4);
+    }
+
+    .score-card {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .score-box {
+      width: 120px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      text-align: center;
+      margin: 10px;
+    }
+
+    .score-box h3 {
+      color: #00c3ff;
+      margin-bottom: 5px;
+    }
+
+    .overall-score {
+      font-size: 32px;
+      font-weight: bold;
+      color: #7a4cff;
+      text-shadow: 0 0 10px rgba(122, 76, 255, 0.5);
+    }
+
+    .feedback-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .user-prompt {
+      background: rgba(0, 195, 255, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #ccc;
+    }
+
+    .btn-next {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      text-align: center;
+      background: linear-gradient(145deg, #00c3ff, #7a4cff);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+    }
+
+    .btn-next:hover {
+      filter: brightness(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
+
+  <div class="result-container">
+    <h1 style="text-align:center;"><i class="fas fa-trophy"></i> 🏆 Evaluation Result</h1>
+
+    <p><strong>Submitted Prompt:</strong></p>
+    <div class="user-prompt">
+      "{{ user_prompt }}"
+    </div>
+
+    <div class="score-card">
+      <div class="score-box">
+        <h3><i class="fas fa-lightbulb"></i> Creativity</h3>
+        <div class="overall-score">{{ "%.1f"|format(evaluation.creativity) }}</div>
+      </div>
+      <div class="score-box">
+        <h3><i class="fas fa-bullseye"></i> Relevance</h3>
+        <div class="overall-score">{{ "%.1f"|format(evaluation.relevance) }}</div>
+      </div>
+      <div class="score-box">
+        <h3><i class="fas fa-file-alt"></i> Clarity</h3>
+        <div class="overall-score">{{ "%.1f"|format(evaluation.clarity) }}</div>
+      </div>
+      <div class="score-box">
+        <h3><i class="fas fa-star"></i> Overall</h3>
+        <div class="overall-score">{{ "%.1f"|format(evaluation.overall) }}</div>
+      </div>
+    </div>
+
+    <div class="feedback-box">
+      <strong>AI Feedback:</strong>
+      <p>{{ evaluation.feedback }}</p>
+    </div>
+
+    <a href="{{ url_for('welcome') }}" class="btn-next">
+      <i class="fas fa-home"></i> Back to Home
+    </a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard - PromptArena</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 Leaderboard</h1>
+        <p>Top Prompt Masters Based on Average Score</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Avg Score</th>
+                    <th>Battles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in top_users %}
+                <tr>
+                    <td><strong>{{ loop.index }}</strong></td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td><strong>{{ "%.2f"|format(user.avg_score) }}</strong></td>
+                    <td>{{ user.battle_count }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4">No battles yet. Be the first!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="{{ url_for('welcome') }}">← Back to Home</a>
+    </div>
+</body>
+</html>
