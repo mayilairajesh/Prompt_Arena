@@ -5,11 +5,13 @@ import os
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # Only for development
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from models import db, User, PromptSubmission  # Make sure models are ready
 from dotenv import load_dotenv
 from openai import OpenAI
 from pyotp import TOTP
+
 
 # Email OTP
 import smtplib
@@ -37,6 +39,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'fallback-secret-key'
 # === Database URI Setup ===
 database_url = os.getenv("DATABASE_URL")
 
+
 if database_url:
     # Fix for SQLAlchemy (must use 'postgresql://' not 'postgres://')
     if database_url.startswith("postgres://"):
@@ -50,12 +53,15 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
-# ====================
-# 3. INITIALIZE DB & LOGIN MANAGER
-# ====================
+# Initialize DB
 db.init_app(app)
 
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)  # ← Add this
+
+# ====================
+# 3. LOGIN MANAGER
+# ====================
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
@@ -434,6 +440,12 @@ def evaluate_prompt_with_ai(user_prompt, level="Basic"):
 # ====================
 if __name__ == '__main__':
     with app.app_context():
+        # Apply any pending migrations
+        from flask_migrate import upgrade
+        upgrade()  # ← This runs 'flask db upgrade'
+        
+        # Ensure tables exist (fallback)
         db.create_all()
-        print("✅ Tables created successfully!")
+        print("✅ Tables created or upgraded successfully!")
+
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)

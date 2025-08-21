@@ -12,7 +12,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     mobile_number = db.Column(db.String(20))
     otp = db.Column(db.String(6))  # For OTP login
-    password_hash = db.Column(db.String(256))  # For password login
+    #password_hash = db.Column(db.String(256))  # For password login
+    password_hash = db.Column(db.String(256), nullable=True)  # Nullable for Gmail users
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
