@@ -147,6 +147,7 @@ def signup():
         last_name = request.form['last_name']
         email = request.form['email']
         mobile_number = request.form.get('mobile_number')
+        password = request.form['password']
 
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
@@ -159,6 +160,8 @@ def signup():
             email=email,
             mobile_number=mobile_number
         )
+        new_user.set_password(password)  # Hash and save password
+
         db.session.add(new_user)
         db.session.commit()
         flash('Account created successfully. Please log in.')
@@ -260,6 +263,23 @@ def google_login():
     login_user(user)
     flash(f"🎉 Welcome, {first_name}! You're logged in with Gmail.")
     return redirect(url_for("welcome"))
+
+@app.route('/login/password', methods=['GET', 'POST'])
+def login_with_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        user = User.query.filter_by(email=email).first()
+        if user and user.check_password(password):
+            login_user(user)
+            flash('✅ Logged in successfully!')
+            return redirect(url_for('welcome'))
+        else:
+            flash('❌ Invalid email or password.')
+            return redirect(url_for('login_with_password'))
+
+    return render_template('login.html')  # Or a dedicated template
 
 @app.route('/welcome')
 @login_required
