@@ -4,15 +4,62 @@
     <meta charset="UTF-8">
     <title>Welcome - PromptArena</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298, #667eea);
             color: white;
             min-height: 100vh;
+        }
+
+        /* Fixed Top Navigation Bar */
+        .navbar {
+            background: rgba(30, 60, 114, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .navbar h2 {
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .navbar a:hover {
+            opacity: 0.8;
+        }
+
+        /* Welcome Card - Centered */
+        .welcome-container {
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            padding: 80px 20px 20px;
         }
 
         .welcome-card {
@@ -67,17 +114,52 @@
         .btn-secondary {
             background: #4ecdc4;
         }
+
+        /* Footer Links (Leaderboard & Payment) */
+        .footer-links {
+            margin-top: 20px;
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links a {
+            color: #ffd700;
+            margin: 0 10px;
+            text-decoration: underline;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
 
-<div class="welcome-card">
-    <h1>🎮 Welcome, {{ user.first_name }}!</h1>
-    <p class="subtitle">Ready to battle in the arena of creativity?</p>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar">
+        <h2>🎮 PromptArena</h2>
+        <div>
+            <a href="{{ url_for('welcome') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
 
-    <a href="{{ url_for('prompting_space') }}" class="btn-primary">Enter Prompting Space</a>
-    <a href="{{ url_for('leaderboard') }}" class="btn-primary btn-secondary">View Leaderboard</a>
-</div>
+    <!-- Welcome Content -->
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <h1>🎮 Welcome, {{ user.first_name }}!</h1>
+            <p class="subtitle">Ready to battle in the arena of creativity?</p>
+
+            <a href="{{ url_for('prompting_space') }}" class="btn-primary">Enter Prompting Space</a>
+            <a href="{{ url_for('leaderboard') }}" class="btn-primary btn-secondary">View Leaderboard</a>
+
+            <!-- Additional Labels as per Excel PRD -->
+            <div class="footer-links">
+                <a href="{{ url_for('leaderboard') }}">🏆 Leaderboard</a> |
+                <a href="{{ url_for('payment') }}">💳 Payment Info</a>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -25,13 +25,29 @@ load_dotenv()
 # Initialize OpenAI
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
+# Check if OpenAI API key is set
 
 # ====================
 # 2. CREATE FLASK APP
 # ====================
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'fallback-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+
+
+# === Database URI Setup ===
+database_url = os.getenv("DATABASE_URL")
+
+if database_url:
+    # Fix for SQLAlchemy (must use 'postgresql://' not 'postgres://')
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+    print("✅ Using PostgreSQL:", database_url)
+else:
+    # Fallback to SQLite (only for local development)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prompt_arena.db'
+    print("✅ Using SQLite (local only)")
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -334,6 +350,11 @@ def leaderboard():
 
     return render_template('leaderboard.html', top_users=top_users)
 
+@app.route('/payment')
+@login_required
+def payment():
+    return render_template('payment.html')
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -394,5 +415,5 @@ def evaluate_prompt_with_ai(user_prompt, level="Basic"):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+        print("✅ Tables created successfully!")
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
