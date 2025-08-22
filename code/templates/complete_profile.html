@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Complete Profile - PromptArena</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #1e3c72; color: white; padding: 40px; }
+        .container { max-width: 500px; margin: auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 16px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; }
+        button { background: #ff6b6b; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>✨ Complete Your Profile</h2>
+    <p>Make your PromptArena experience personal!</p>
+
+    <form method="POST">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+        <input type="text" name="mobile_number" placeholder="Mobile Number (Optional)">
+        <input type="password" name="password" placeholder="Set Password (Optional)">
+        <button type="submit">Save & Continue</button>
+    </form>
+
+    <p><a href="{{ url_for('welcome') }}" style="color: #ccc;">Skip for now</a></p>
+</div>
+</body>
+</html>

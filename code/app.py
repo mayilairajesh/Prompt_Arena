@@ -138,6 +138,18 @@ def send_otp_email(to_email, otp):
         return False
 
 
+# Run migrations on startup
+with app.app_context():
+    from flask_migrate import upgrade
+    try:
+        upgrade()
+        print("✅ Migrations applied or already up-to-date.")
+    except Exception as e:
+        if "duplicate column name: password_hash" in str(e):
+            print("✅ Migration skipped: password_hash column already exists.")
+        else:
+            print(f"❌ Migration failed: {e}")
+
 # ====================
 # 7. ROUTES
 # ====================
@@ -178,26 +190,38 @@ def signup():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['email'].strip().lower()
+
+        # Find existing user
         user = User.query.filter_by(email=email).first()
 
-        if user:
-            totp = TOTP(os.getenv('OTP_SECRET'))
-            otp = totp.now()
-            user.otp = otp
+        # If user doesn't exist, create a MINIMAL user (guest)
+        if not user:
+            user = User(
+                first_name="Guest",
+                last_name="User",
+                email=email,
+                mobile_number=None,
+                otp=None  # Will be set below
+            )
+            db.session.add(user)
             db.session.commit()
+            flash('Welcome! You’re logged in as a guest. Complete your profile anytime.')
 
-            success = send_otp_email(email, otp)
-            if success:
-                flash('OTP has been sent to your email.')
-            else:
-                flash('Failed to send OTP. Please try again.')
-                return redirect(url_for('login'))
+        # Generate and send OTP
+        totp = TOTP(os.getenv('OTP_SECRET'))
+        otp = totp.now()
+        user.otp = otp
+        db.session.commit()
 
-            return redirect(url_for('verify_otp', email=email))
+        success = send_otp_email(email, otp)
+        if success:
+            flash('OTP has been sent to your email.')
         else:
-            flash('User not found. Please sign up.')
-            return redirect(url_for('signup'))
+            flash('Failed to send OTP. Please try again.')
+            return redirect(url_for('login'))
+
+        return redirect(url_for('verify_otp', email=email))
 
     return render_template('login.html')
 
@@ -291,6 +315,24 @@ def login_with_password():
 @login_required
 def welcome():
     return render_template('welcome.html', user=current_user)
+
+@app.route('/complete_profile', methods=['GET', 'POST'])
+@login_required
+def complete_profile():
+    if request.method == 'POST':
+        current_user.first_name = request.form['first_name']
+        current_user.last_name = request.form['last_name']
+        current_user.mobile_number = request.form.get('mobile_number')
+        
+        password = request.form.get('password')
+        if password:
+            current_user.set_password(password)
+        
+        db.session.commit()
+        flash('🎉 Profile updated! Welcome to PromptArena.')
+        return redirect(url_for('welcome'))
+
+    return render_template('complete_profile.html')
 
 @app.route('/prompting_space', methods=['GET', 'POST'])
 @login_required
@@ -440,12 +482,11 @@ def evaluate_prompt_with_ai(user_prompt, level="Basic"):
 # ====================
 if __name__ == '__main__':
     with app.app_context():
-        # Apply any pending migrations
         from flask_migrate import upgrade
-        upgrade()  # ← This runs 'flask db upgrade'
-        
-        # Ensure tables exist (fallback)
-        db.create_all()
-        print("✅ Tables created or upgraded successfully!")
+        try:
+            upgrade()  # Applies any pending migrations
+            print("✅ Migrations applied or already up-to-date.")
+        except Exception as e:
+            print(f"❌ Migration failed: {e}")
 
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
