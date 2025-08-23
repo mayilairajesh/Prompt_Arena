@@ -301,7 +301,7 @@ def login_with_password():
         password = request.form['password']
 
         user = User.query.filter_by(email=email).first()
-        if user and not user.is_guest and user.check_password(password):
+        if user and user.check_password(password):
             login_user(user)
             flash('✅ Logged in successfully!')
             return redirect(url_for('welcome'))
@@ -309,7 +309,7 @@ def login_with_password():
             flash('❌ Invalid email or password.')
             return redirect(url_for('login_with_password'))
 
-    return render_template('login_with_password.html')
+    return render_template('login.html')
 
 @app.route('/welcome')
 @login_required

@@ -1,8 +1,8 @@
-"""Initial migration
+"""Ensure password_hash column exists
 
-Revision ID: 12e19509a129
+Revision ID: c3a94077b707
 Revises: 
-Create Date: 2025-08-23 15:50:07.915725
+Create Date: 2025-08-23 22:07:39.899361
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '12e19509a129'
+revision = 'c3a94077b707'
 down_revision = None
 branch_labels = None
 depends_on = None

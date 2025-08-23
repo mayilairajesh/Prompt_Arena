@@ -1,4 +1,19 @@
 # Ignore the .env file containing sensitive environment variables
 .env
-# Ignore the pycache file containing sensitive environment variables
+
+# Ignore Python-specific files
+*.pyc
 __pycache__/
+venv/
+.venv/
+
+# Database and local files
+prompt_arena.db
+instance/
+
+# IDE and editor files
+.idea/
+.vscode/
+
+# Render-specific files (if any)
+.render/
