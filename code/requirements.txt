@@ -9,3 +9,4 @@ openai
 flask-dance[google]
 psycopg2-binary
 Flask-Migrate
+gunicorn
