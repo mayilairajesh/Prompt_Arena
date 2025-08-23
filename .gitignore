@@ -1,3 +1,4 @@
-# Ignore the .env file 
 # Ignore the .env file containing sensitive environment variables
 .env
+# Ignore the pycache file containing sensitive environment variables
+__pycache__/
