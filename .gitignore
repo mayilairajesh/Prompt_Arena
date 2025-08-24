@@ -17,3 +17,6 @@ instance/
 
 # Render-specific files (if any)
 .render/
+
+#virtual environment
+myenv/
