@@ -1,0 +1,33 @@
+API Documentation
+=================
+
+This section documents the core modules of the Prompt Arena application.
+
+arena.app
+---------
+.. automodule:: arena.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+arena.models
+------------
+.. automodule:: arena.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+arena.routes
+------------
+.. automodule:: arena.routes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+arena.config
+------------
+.. automodule:: arena.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

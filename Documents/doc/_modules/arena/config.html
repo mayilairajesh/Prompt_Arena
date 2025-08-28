@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>arena.config &mdash; Prompt Arena  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Prompt Arena
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Prompt Arena</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">arena.config</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for arena.config</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Application Configuration Module</span>
+
+<span class="sd">This module defines environment-specific configuration settings for the Prompt Arena application</span>
+<span class="sd">using a class-based approach. It supports different modes: development, production, and testing.</span>
+
+<span class="sd">The configuration is loaded from environment variables (via `.env`) with sensible defaults</span>
+<span class="sd">for local development.</span>
+
+<span class="sd">Key Features:</span>
+<span class="sd">- Centralized settings for Flask, SQLAlchemy, email, OAuth, and OpenAI</span>
+<span class="sd">- Support for multiple environments</span>
+<span class="sd">- Secure defaults (e.g., TLS, CSRF)</span>
+<span class="sd">- Dynamic upload path creation</span>
+
+<span class="sd">This file is typically used with:</span>
+<span class="sd">    app.config.from_object(config.config_by_name[env])</span>
+
+<span class="sd">Where `env` is &#39;development&#39;, &#39;production&#39;, etc.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Load environment variables from .env file</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="Config">
+<a class="viewcode-back" href="../../api.html#arena.config.Config">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base configuration class shared across all environments.</span>
+
+<span class="sd">    Contains default settings for security, database, email, authentication,</span>
+<span class="sd">    and external services. Should not be used directly; use one of the subclasses</span>
+<span class="sd">    (DevelopmentConfig, ProductionConfig, etc.).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        SECRET_KEY (str): Used for session security and CSRF protection.</span>
+<span class="sd">            Loaded from `SECRET_KEY` env var or fallback default.</span>
+<span class="sd">        SQLALCHEMY_DATABASE_URI (str): Database connection string.</span>
+<span class="sd">            Supports PostgreSQL (via DATABASE_URL) or falls back to SQLite.</span>
+<span class="sd">        SQLALCHEMY_TRACK_MODIFICATIONS (bool): Disables Flask-SQLAlchemy event system for performance.</span>
+<span class="sd">        MAIL_SERVER (str): SMTP server hostname (e.g., &#39;smtp.gmail.com&#39;).</span>
+<span class="sd">        MAIL_PORT (int): SMTP server port (typically 587 for TLS).</span>
+<span class="sd">        MAIL_USE_TLS (bool): Enable TLS encryption for email.</span>
+<span class="sd">        MAIL_USE_SSL (bool): Enable SSL encryption (mutually exclusive with TLS).</span>
+<span class="sd">        MAIL_USERNAME (str): Email account username (e.g., sender@gmail.com).</span>
+<span class="sd">        MAIL_PASSWORD (str): App-specific password or token for email login.</span>
+<span class="sd">        MAIL_DEFAULT_SENDER (str): Default &quot;From&quot; address for outgoing emails.</span>
+<span class="sd">        OTP_EXPIRY_MINUTES (int): How long OTP codes remain valid (e.g., 10 minutes).</span>
+<span class="sd">        OTP_SECRET (str): Secret key for TOTP generation/validation.</span>
+<span class="sd">            Should be strong in production.</span>
+<span class="sd">        GOOGLE_CLIENT_ID (str): OAuth2 client ID from Google Cloud Console.</span>
+<span class="sd">        GOOGLE_CLIENT_SECRET (str): OAuth2 client secret.</span>
+<span class="sd">        GOOGLE_DISCOVERY_URL (str): OpenID Connect discovery document URL for Google.</span>
+<span class="sd">        OPENAI_API_KEY (str): API key for accessing OpenAI models (e.g., gpt-3.5-turbo).</span>
+<span class="sd">        UPLOAD_FOLDER (str): Local filesystem path for file uploads.</span>
+<span class="sd">            Created automatically if it doesn&#39;t exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;fallback_secret_key_for_development&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Database Configuration</span>
+    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="p">,</span> <span class="s1">&#39;sqlite:///prompt_arena.db&#39;</span><span class="p">)</span>
+    <span class="n">SQLALCHEMY_TRACK_MODIFICATIONS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Email Configuration (for OTP)</span>
+    <span class="n">MAIL_SERVER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_SERVER&#39;</span><span class="p">,</span> <span class="s1">&#39;smtp.gmail.com&#39;</span><span class="p">)</span>
+    <span class="n">MAIL_PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_PORT&#39;</span><span class="p">,</span> <span class="mi">587</span><span class="p">))</span>
+    <span class="n">MAIL_USE_TLS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_USE_TLS&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
+    <span class="n">MAIL_USE_SSL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_USE_SSL&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
+    <span class="n">MAIL_USERNAME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_USERNAME&#39;</span><span class="p">)</span>  <span class="c1"># Your email</span>
+    <span class="n">MAIL_PASSWORD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_PASSWORD&#39;</span><span class="p">)</span>  <span class="c1"># App-specific password</span>
+    <span class="n">MAIL_DEFAULT_SENDER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAIL_DEFAULT_SENDER&#39;</span><span class="p">,</span> <span class="s1">&#39;no-reply@promptarena.com&#39;</span><span class="p">)</span>
+
+    <span class="c1"># OTP Configuration</span>
+    <span class="n">OTP_EXPIRY_MINUTES</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">OTP_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OTP_SECRET&#39;</span><span class="p">,</span> <span class="s1">&#39;super_secret_otp_key&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Google OAuth2 Configuration</span>
+    <span class="n">GOOGLE_CLIENT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;GOOGLE_CLIENT_ID&#39;</span><span class="p">)</span>
+    <span class="n">GOOGLE_CLIENT_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;GOOGLE_CLIENT_SECRET&#39;</span><span class="p">)</span>
+    <span class="n">GOOGLE_DISCOVERY_URL</span> <span class="o">=</span> <span class="s2">&quot;https://accounts.google.com/.well-known/openid-configuration&quot;</span>
+
+    <span class="c1"># OpenAI API Key (for prompt evaluation)</span>
+    <span class="n">OPENAI_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Upload folders or other paths</span>
+    <span class="n">UPLOAD_FOLDER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;uploads&#39;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">UPLOAD_FOLDER</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="DevelopmentConfig">
+<a class="viewcode-back" href="../../api.html#arena.config.DevelopmentConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for development environment.</span>
+
+<span class="sd">    Enables debug mode and SQL query logging for easier troubleshooting.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        DEBUG (bool): Enables Flask debug mode (auto-reload, detailed errors).</span>
+<span class="sd">        SQLALCHEMY_ECHO (bool): Logs all SQL statements to stdout.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SQLALCHEMY_ECHO</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Logs SQL queries</span></div>
+
+
+
+<div class="viewcode-block" id="ProductionConfig">
+<a class="viewcode-back" href="../../api.html#arena.config.ProductionConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProductionConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for production environment.</span>
+
+<span class="sd">    Prioritizes security and stability.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        DEBUG (bool): Disabled to prevent sensitive debug traces.</span>
+<span class="sd">        SECRET_KEY (str): Must be set via environment variable.</span>
+<span class="sd">        SESSION_COOKIE_SECURE (bool): Ensures cookies are only sent over HTTPS.</span>
+<span class="sd">        REMEMBER_COOKIE_SECURE (bool): Same as above, for &quot;remember me&quot; tokens.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>  <span class="c1"># Override with strong env var</span>
+    <span class="c1"># Use stronger security settings in production</span>
+    <span class="n">SESSION_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">REMEMBER_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="TestingConfig">
+<a class="viewcode-back" href="../../api.html#arena.config.TestingConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestingConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for unit and integration testing.</span>
+
+<span class="sd">    Uses in-memory database and disables CSRF for easier form testing.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        TESTING (bool): Enables test mode in Flask.</span>
+<span class="sd">        SQLALCHEMY_DATABASE_URI (str): Uses SQLite in-memory DB for speed.</span>
+<span class="sd">        WTF_CSRF_ENABLED (bool): Disables CSRF protection to simplify test forms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///:memory:&#39;</span>  <span class="c1"># In-memory DB</span>
+    <span class="n">WTF_CSRF_ENABLED</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Disable CSRF for testing forms</span></div>
+
+
+
+<span class="c1"># Dictionary to easily select config by name</span>
+<span class="n">config_by_name</span> <span class="o">=</span> <span class="p">{</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A mapping of environment names to configuration classes.</span>
+
+<span class="sd">    Used in `app.py` to dynamically load the correct config:</span>
+
+<span class="sd">        app.config.from_object(config_by_name[env])</span>
+
+<span class="sd">    Keys:</span>
+<span class="sd">        &#39;development&#39;: DevelopmentConfig</span>
+<span class="sd">        &#39;production&#39;: ProductionConfig</span>
+<span class="sd">        &#39;testing&#39;: TestingConfig</span>
+<span class="sd">        &#39;default&#39;: DevelopmentConfig (fallback)</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; from config import config_by_name</span>
+<span class="sd">        &gt;&gt;&gt; cfg = config_by_name[&#39;development&#39;]()</span>
+<span class="sd">        &gt;&gt;&gt; cfg.DEBUG</span>
+<span class="sd">        True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="s1">&#39;development&#39;</span><span class="p">:</span> <span class="n">DevelopmentConfig</span><span class="p">,</span>
+    <span class="s1">&#39;production&#39;</span><span class="p">:</span> <span class="n">ProductionConfig</span><span class="p">,</span>
+    <span class="s1">&#39;testing&#39;</span><span class="p">:</span> <span class="n">TestingConfig</span><span class="p">,</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">DevelopmentConfig</span>
+<span class="p">}</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

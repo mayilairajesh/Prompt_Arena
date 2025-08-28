@@ -1,0 +1,1134 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Documentation &mdash; Prompt Arena  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Prompt Arena’s Documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Prompt Arena
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#arena-app">arena.app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-arena.models">arena.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arena.models.PromptSubmission"><code class="docutils literal notranslate"><span class="pre">PromptSubmission</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.id"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.user_id"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.level"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.battle_type"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.battle_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.prompt_text"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.prompt_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.creativity_score"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.creativity_score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.relevance_score"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.relevance_score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.clarity_score"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.clarity_score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.overall_score"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.overall_score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.feedback"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.feedback</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.timestamp"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.PromptSubmission.user"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">PromptSubmission.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.first_name"><code class="docutils literal notranslate"><span class="pre">User.first_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.last_name"><code class="docutils literal notranslate"><span class="pre">User.last_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.mobile_number"><code class="docutils literal notranslate"><span class="pre">User.mobile_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.password_hash"><code class="docutils literal notranslate"><span class="pre">User.password_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.otp"><code class="docutils literal notranslate"><span class="pre">User.otp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.otp_created_at"><code class="docutils literal notranslate"><span class="pre">User.otp_created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.is_guest"><code class="docutils literal notranslate"><span class="pre">User.is_guest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.created_at"><code class="docutils literal notranslate"><span class="pre">User.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.updated_at"><code class="docutils literal notranslate"><span class="pre">User.updated_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.check_password"><code class="docutils literal notranslate"><span class="pre">User.check_password()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.models.User.set_password"><code class="docutils literal notranslate"><span class="pre">User.set_password()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-arena.routes">arena.routes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arena.routes.gmail_callback"><code class="docutils literal notranslate"><span class="pre">gmail_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.routes.gmail_login"><code class="docutils literal notranslate"><span class="pre">gmail_login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.routes.home"><code class="docutils literal notranslate"><span class="pre">home()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.routes.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.routes.send_otp_email"><code class="docutils literal notranslate"><span class="pre">send_otp_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.routes.verify_otp"><code class="docutils literal notranslate"><span class="pre">verify_otp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-arena.config">arena.config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arena.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.SECRET_KEY"><code class="docutils literal notranslate"><span class="pre">Config.SECRET_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.SQLALCHEMY_DATABASE_URI"><code class="docutils literal notranslate"><span class="pre">Config.SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.SQLALCHEMY_TRACK_MODIFICATIONS"><code class="docutils literal notranslate"><span class="pre">Config.SQLALCHEMY_TRACK_MODIFICATIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_SERVER"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_SERVER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_PORT"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_PORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_USE_TLS"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_USE_TLS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_USE_SSL"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_USE_SSL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_USERNAME"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_USERNAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_PASSWORD"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_PASSWORD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.MAIL_DEFAULT_SENDER"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_DEFAULT_SENDER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.OTP_EXPIRY_MINUTES"><code class="docutils literal notranslate"><span class="pre">Config.OTP_EXPIRY_MINUTES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.OTP_SECRET"><code class="docutils literal notranslate"><span class="pre">Config.OTP_SECRET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.GOOGLE_CLIENT_ID"><code class="docutils literal notranslate"><span class="pre">Config.GOOGLE_CLIENT_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.GOOGLE_CLIENT_SECRET"><code class="docutils literal notranslate"><span class="pre">Config.GOOGLE_CLIENT_SECRET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.GOOGLE_DISCOVERY_URL"><code class="docutils literal notranslate"><span class="pre">Config.GOOGLE_DISCOVERY_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.OPENAI_API_KEY"><code class="docutils literal notranslate"><span class="pre">Config.OPENAI_API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.Config.UPLOAD_FOLDER"><code class="docutils literal notranslate"><span class="pre">Config.UPLOAD_FOLDER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">Config.GOOGLE_CLIENT_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Config.GOOGLE_CLIENT_SECRET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Config.GOOGLE_DISCOVERY_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_DEFAULT_SENDER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_PASSWORD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_PORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_SERVER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_USERNAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_USE_SSL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">Config.MAIL_USE_TLS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">Config.OPENAI_API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">Config.OTP_EXPIRY_MINUTES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">Config.OTP_SECRET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">Config.SECRET_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">Config.SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">Config.SQLALCHEMY_TRACK_MODIFICATIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">Config.UPLOAD_FOLDER</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.config.DevelopmentConfig"><code class="docutils literal notranslate"><span class="pre">DevelopmentConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.DevelopmentConfig.DEBUG"><code class="docutils literal notranslate"><span class="pre">DevelopmentConfig.DEBUG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.DevelopmentConfig.SQLALCHEMY_ECHO"><code class="docutils literal notranslate"><span class="pre">DevelopmentConfig.SQLALCHEMY_ECHO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">DevelopmentConfig.DEBUG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">DevelopmentConfig.SQLALCHEMY_ECHO</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.config.ProductionConfig"><code class="docutils literal notranslate"><span class="pre">ProductionConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.ProductionConfig.DEBUG"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.DEBUG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.ProductionConfig.SECRET_KEY"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.SECRET_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.ProductionConfig.SESSION_COOKIE_SECURE"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.SESSION_COOKIE_SECURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.ProductionConfig.REMEMBER_COOKIE_SECURE"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.REMEMBER_COOKIE_SECURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.DEBUG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.REMEMBER_COOKIE_SECURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.SECRET_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23"><code class="docutils literal notranslate"><span class="pre">ProductionConfig.SESSION_COOKIE_SECURE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#arena.config.TestingConfig"><code class="docutils literal notranslate"><span class="pre">TestingConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.TestingConfig.TESTING"><code class="docutils literal notranslate"><span class="pre">TestingConfig.TESTING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.TestingConfig.SQLALCHEMY_DATABASE_URI"><code class="docutils literal notranslate"><span class="pre">TestingConfig.SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arena.config.TestingConfig.WTF_CSRF_ENABLED"><code class="docutils literal notranslate"><span class="pre">TestingConfig.WTF_CSRF_ENABLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">TestingConfig.SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25"><code class="docutils literal notranslate"><span class="pre">TestingConfig.TESTING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">TestingConfig.WTF_CSRF_ENABLED</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prompt Arena</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h1>
+<p>This section documents the core modules of the Prompt Arena application.</p>
+<section id="arena-app">
+<h2>arena.app<a class="headerlink" href="#arena-app" title="Link to this heading"></a></h2>
+</section>
+<section id="module-arena.models">
+<span id="arena-models"></span><h2>arena.models<a class="headerlink" href="#module-arena.models" title="Link to this heading"></a></h2>
+<p>Database Models for Prompt Arena</p>
+<p>This module defines the SQLAlchemy data models used in the Prompt Arena application.
+It includes:
+- User: Handles authentication, profile data, OTP login, and guest/full account status.
+- PromptSubmission: Stores user-submitted prompts and AI-generated evaluations.</p>
+<p>The models use Flask-SQLAlchemy and integrate with Flask-Login via UserMixin.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">arena.models.</span></span><span class="sig-name descname"><span class="pre">PromptSubmission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arena/models.html#PromptSubmission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.models.PromptSubmission" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Represents a single prompt submitted by a user in the battle arena.</p>
+<p>Each submission is evaluated by an AI judge and assigned scores for creativity,
+relevance, clarity, and an overall score, along with feedback.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#arena.models.PromptSubmission.id" title="Link to this definition"></a></dt>
+<dd><p>Primary key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#arena.models.PromptSubmission.user_id" title="Link to this definition"></a></dt>
+<dd><p>Foreign key referencing the User who submitted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.level">
+<span class="sig-name descname"><span class="pre">level</span></span><a class="headerlink" href="#arena.models.PromptSubmission.level" title="Link to this definition"></a></dt>
+<dd><p>Difficulty level (e.g., ‘Basic’, ‘Intermediate’, ‘Pro’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.battle_type">
+<span class="sig-name descname"><span class="pre">battle_type</span></span><a class="headerlink" href="#arena.models.PromptSubmission.battle_type" title="Link to this definition"></a></dt>
+<dd><p>Type of battle (e.g., ‘1v1’, ‘Free For All’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.prompt_text">
+<span class="sig-name descname"><span class="pre">prompt_text</span></span><a class="headerlink" href="#arena.models.PromptSubmission.prompt_text" title="Link to this definition"></a></dt>
+<dd><p>The actual prompt submitted by the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.creativity_score">
+<span class="sig-name descname"><span class="pre">creativity_score</span></span><a class="headerlink" href="#arena.models.PromptSubmission.creativity_score" title="Link to this definition"></a></dt>
+<dd><p>Score from 0–10 for originality.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.relevance_score">
+<span class="sig-name descname"><span class="pre">relevance_score</span></span><a class="headerlink" href="#arena.models.PromptSubmission.relevance_score" title="Link to this definition"></a></dt>
+<dd><p>Score from 0–10 for topic alignment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.clarity_score">
+<span class="sig-name descname"><span class="pre">clarity_score</span></span><a class="headerlink" href="#arena.models.PromptSubmission.clarity_score" title="Link to this definition"></a></dt>
+<dd><p>Score from 0–10 for coherence and structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.overall_score">
+<span class="sig-name descname"><span class="pre">overall_score</span></span><a class="headerlink" href="#arena.models.PromptSubmission.overall_score" title="Link to this definition"></a></dt>
+<dd><p>Average of the three scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.feedback">
+<span class="sig-name descname"><span class="pre">feedback</span></span><a class="headerlink" href="#arena.models.PromptSubmission.feedback" title="Link to this definition"></a></dt>
+<dd><p>Constructive AI-generated feedback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#arena.models.PromptSubmission.timestamp" title="Link to this definition"></a></dt>
+<dd><p>When the prompt was submitted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.PromptSubmission.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#arena.models.PromptSubmission.user" title="Link to this definition"></a></dt>
+<dd><p>SQLAlchemy relationship to the User model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#arena.models.User" title="arena.models.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">user</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'User'</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="arena.models.User">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">arena.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arena/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.models.User" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UserMixin</span></code></p>
+<p>Represents a user in the Prompt Arena system.</p>
+<p>This model supports both guest logins (via email + OTP) and full registered users.
+Guests can later upgrade to full accounts by setting a password and completing their profile.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#arena.models.User.id" title="Link to this definition"></a></dt>
+<dd><p>Primary key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><a class="headerlink" href="#arena.models.User.first_name" title="Link to this definition"></a></dt>
+<dd><p>User’s first name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><a class="headerlink" href="#arena.models.User.last_name" title="Link to this definition"></a></dt>
+<dd><p>User’s last name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#arena.models.User.email" title="Link to this definition"></a></dt>
+<dd><p>Unique email address; used for login and OTP delivery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.mobile_number">
+<span class="sig-name descname"><span class="pre">mobile_number</span></span><a class="headerlink" href="#arena.models.User.mobile_number" title="Link to this definition"></a></dt>
+<dd><p>Contact number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.password_hash">
+<span class="sig-name descname"><span class="pre">password_hash</span></span><a class="headerlink" href="#arena.models.User.password_hash" title="Link to this definition"></a></dt>
+<dd><p>Hashed password (None for guests until set).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.otp">
+<span class="sig-name descname"><span class="pre">otp</span></span><a class="headerlink" href="#arena.models.User.otp" title="Link to this definition"></a></dt>
+<dd><p>One-time password for email-based login (6 digits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.otp_created_at">
+<span class="sig-name descname"><span class="pre">otp_created_at</span></span><a class="headerlink" href="#arena.models.User.otp_created_at" title="Link to this definition"></a></dt>
+<dd><p>Timestamp when OTP was generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.is_guest">
+<span class="sig-name descname"><span class="pre">is_guest</span></span><a class="headerlink" href="#arena.models.User.is_guest" title="Link to this definition"></a></dt>
+<dd><p>True if user hasn’t completed profile; False otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#arena.models.User.created_at" title="Link to this definition"></a></dt>
+<dd><p>Account creation time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.models.User.updated_at">
+<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#arena.models.User.updated_at" title="Link to this definition"></a></dt>
+<dd><p>Last update time (auto-updated).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="arena.models.User.check_password">
+<span class="sig-name descname"><span class="pre">check_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arena/models.html#User.check_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.models.User.check_password" title="Link to this definition"></a></dt>
+<dd><p>Verify a plaintext password against the stored hash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>password</strong> (<em>str</em>) – Password to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the password matches, False otherwise or if no hash exists.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="arena.models.User.set_password">
+<span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arena/models.html#User.set_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.models.User.set_password" title="Link to this definition"></a></dt>
+<dd><p>Hash and store the user’s password.</p>
+<p>Used during signup or when upgrading a guest account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>password</strong> (<em>str</em>) – Plaintext password to hash and save.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-arena.routes">
+<span id="arena-routes"></span><h2>arena.routes<a class="headerlink" href="#module-arena.routes" title="Link to this heading"></a></h2>
+<p>Application Routes Module (Blueprint)</p>
+<p>This module defines all web routes for the Prompt Arena application using a Flask Blueprint.
+It handles:
+- User authentication via email/OTP and Google OAuth
+- Prompt submission and evaluation flow
+- Navigation to core pages (welcome, leaderboard, payment)</p>
+<p>All routes require login unless explicitly public (e.g., login, verify-otp).
+Uses <cite>flask_login</cite> for session management and SMTP for OTP delivery.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="arena.routes.gmail_callback">
+<span class="sig-prename descclassname"><span class="pre">arena.routes.</span></span><span class="sig-name descname"><span class="pre">gmail_callback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arena.routes.gmail_callback" title="Link to this definition"></a></dt>
+<dd><p>Handle Google OAuth2 callback after user authorization.</p>
+<p>Exchanges the authorization code for an access token, then fetches user info
+(email, name). Creates or updates the local user account and logs them in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Redirect to welcome or login on failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>werkzeug.wrappers.response.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="arena.routes.gmail_login">
+<span class="sig-prename descclassname"><span class="pre">arena.routes.</span></span><span class="sig-name descname"><span class="pre">gmail_login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arena.routes.gmail_login" title="Link to this definition"></a></dt>
+<dd><p>Initiate Google OAuth2 login flow.</p>
+<p>Fetches Google’s OpenID configuration and redirects the user to Google’s
+authorization endpoint with proper scope and redirect URI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Redirect to Google’s login page.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>werkzeug.wrappers.response.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="arena.routes.home">
+<span class="sig-prename descclassname"><span class="pre">arena.routes.</span></span><span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arena.routes.home" title="Link to this definition"></a></dt>
+<dd><p>Redirect root path to the login page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Redirect to <cite>/login</cite>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>werkzeug.wrappers.response.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="arena.routes.login">
+<span class="sig-prename descclassname"><span class="pre">arena.routes.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arena.routes.login" title="Link to this definition"></a></dt>
+<dd><p>Handle user login via email and OTP.</p>
+<p>On GET: Display the login form.
+On POST:
+- Validate required fields (first name, last name, email).
+- Create a new user if email doesn’t exist.
+- Generate a TOTP-based OTP and store it in the database.
+- Send OTP via email using <cite>send_otp_email</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Rendered login template or redirect to OTP verification.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str or werkzeug.wrappers.response.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="arena.routes.send_otp_email">
+<span class="sig-prename descclassname"><span class="pre">arena.routes.</span></span><span class="sig-name descname"><span class="pre">send_otp_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">otp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arena/routes.html#send_otp_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.routes.send_otp_email" title="Link to this definition"></a></dt>
+<dd><p>Send a one-time password (OTP) to the specified email address.</p>
+<p>Uses Gmail SMTP (or any SMTP server defined in Config) to deliver a plain+HTML email
+containing the 6-digit OTP. Used during login/signup for secure access.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email</strong> (<em>str</em>) – Recipient’s email address.</p></li>
+<li><p><strong>otp</strong> (<em>str</em>) – The OTP code to include in the message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if email was sent successfully, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">send_otp_email</span><span class="p">(</span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;123456&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="arena.routes.verify_otp">
+<span class="sig-prename descclassname"><span class="pre">arena.routes.</span></span><span class="sig-name descname"><span class="pre">verify_otp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#arena.routes.verify_otp" title="Link to this definition"></a></dt>
+<dd><p>Verify the OTP entered by the user.</p>
+<p>On POST: Validates the OTP using TOTP (valid within 30 seconds window).
+On success: Clears OTP, logs in the user, and redirects to welcome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – URL parameter — the user’s email address.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>OTP form or redirect on success/failure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or werkzeug.wrappers.response.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-arena.config">
+<span id="arena-config"></span><h2>arena.config<a class="headerlink" href="#module-arena.config" title="Link to this heading"></a></h2>
+<p>Application Configuration Module</p>
+<p>This module defines environment-specific configuration settings for the Prompt Arena application
+using a class-based approach. It supports different modes: development, production, and testing.</p>
+<p>The configuration is loaded from environment variables (via <cite>.env</cite>) with sensible defaults
+for local development.</p>
+<p>Key Features:
+- Centralized settings for Flask, SQLAlchemy, email, OAuth, and OpenAI
+- Support for multiple environments
+- Secure defaults (e.g., TLS, CSRF)
+- Dynamic upload path creation</p>
+<dl class="simple">
+<dt>This file is typically used with:</dt><dd><p>app.config.from_object(config.config_by_name[env])</p>
+</dd>
+</dl>
+<p>Where <cite>env</cite> is ‘development’, ‘production’, etc.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="arena.config.Config">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">arena.config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><a class="reference internal" href="_modules/arena/config.html#Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.config.Config" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base configuration class shared across all environments.</p>
+<p>Contains default settings for security, database, email, authentication,
+and external services. Should not be used directly; use one of the subclasses
+(DevelopmentConfig, ProductionConfig, etc.).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.SECRET_KEY">
+<span class="sig-name descname"><span class="pre">SECRET_KEY</span></span><a class="headerlink" href="#arena.config.Config.SECRET_KEY" title="Link to this definition"></a></dt>
+<dd><p>Used for session security and CSRF protection.
+Loaded from <cite>SECRET_KEY</cite> env var or fallback default.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.SQLALCHEMY_DATABASE_URI">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_DATABASE_URI</span></span><a class="headerlink" href="#arena.config.Config.SQLALCHEMY_DATABASE_URI" title="Link to this definition"></a></dt>
+<dd><p>Database connection string.
+Supports PostgreSQL (via DATABASE_URL) or falls back to SQLite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.SQLALCHEMY_TRACK_MODIFICATIONS">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_TRACK_MODIFICATIONS</span></span><a class="headerlink" href="#arena.config.Config.SQLALCHEMY_TRACK_MODIFICATIONS" title="Link to this definition"></a></dt>
+<dd><p>Disables Flask-SQLAlchemy event system for performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_SERVER">
+<span class="sig-name descname"><span class="pre">MAIL_SERVER</span></span><a class="headerlink" href="#arena.config.Config.MAIL_SERVER" title="Link to this definition"></a></dt>
+<dd><p>SMTP server hostname (e.g., ‘smtp.gmail.com’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_PORT">
+<span class="sig-name descname"><span class="pre">MAIL_PORT</span></span><a class="headerlink" href="#arena.config.Config.MAIL_PORT" title="Link to this definition"></a></dt>
+<dd><p>SMTP server port (typically 587 for TLS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_USE_TLS">
+<span class="sig-name descname"><span class="pre">MAIL_USE_TLS</span></span><a class="headerlink" href="#arena.config.Config.MAIL_USE_TLS" title="Link to this definition"></a></dt>
+<dd><p>Enable TLS encryption for email.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_USE_SSL">
+<span class="sig-name descname"><span class="pre">MAIL_USE_SSL</span></span><a class="headerlink" href="#arena.config.Config.MAIL_USE_SSL" title="Link to this definition"></a></dt>
+<dd><p>Enable SSL encryption (mutually exclusive with TLS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_USERNAME">
+<span class="sig-name descname"><span class="pre">MAIL_USERNAME</span></span><a class="headerlink" href="#arena.config.Config.MAIL_USERNAME" title="Link to this definition"></a></dt>
+<dd><p>Email account username (e.g., <a class="reference external" href="mailto:sender&#37;&#52;&#48;gmail&#46;com">sender<span>&#64;</span>gmail<span>&#46;</span>com</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_PASSWORD">
+<span class="sig-name descname"><span class="pre">MAIL_PASSWORD</span></span><a class="headerlink" href="#arena.config.Config.MAIL_PASSWORD" title="Link to this definition"></a></dt>
+<dd><p>App-specific password or token for email login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.MAIL_DEFAULT_SENDER">
+<span class="sig-name descname"><span class="pre">MAIL_DEFAULT_SENDER</span></span><a class="headerlink" href="#arena.config.Config.MAIL_DEFAULT_SENDER" title="Link to this definition"></a></dt>
+<dd><p>Default “From” address for outgoing emails.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.OTP_EXPIRY_MINUTES">
+<span class="sig-name descname"><span class="pre">OTP_EXPIRY_MINUTES</span></span><a class="headerlink" href="#arena.config.Config.OTP_EXPIRY_MINUTES" title="Link to this definition"></a></dt>
+<dd><p>How long OTP codes remain valid (e.g., 10 minutes).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.OTP_SECRET">
+<span class="sig-name descname"><span class="pre">OTP_SECRET</span></span><a class="headerlink" href="#arena.config.Config.OTP_SECRET" title="Link to this definition"></a></dt>
+<dd><p>Secret key for TOTP generation/validation.
+Should be strong in production.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.GOOGLE_CLIENT_ID">
+<span class="sig-name descname"><span class="pre">GOOGLE_CLIENT_ID</span></span><a class="headerlink" href="#arena.config.Config.GOOGLE_CLIENT_ID" title="Link to this definition"></a></dt>
+<dd><p>OAuth2 client ID from Google Cloud Console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.GOOGLE_CLIENT_SECRET">
+<span class="sig-name descname"><span class="pre">GOOGLE_CLIENT_SECRET</span></span><a class="headerlink" href="#arena.config.Config.GOOGLE_CLIENT_SECRET" title="Link to this definition"></a></dt>
+<dd><p>OAuth2 client secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.GOOGLE_DISCOVERY_URL">
+<span class="sig-name descname"><span class="pre">GOOGLE_DISCOVERY_URL</span></span><a class="headerlink" href="#arena.config.Config.GOOGLE_DISCOVERY_URL" title="Link to this definition"></a></dt>
+<dd><p>OpenID Connect discovery document URL for Google.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.OPENAI_API_KEY">
+<span class="sig-name descname"><span class="pre">OPENAI_API_KEY</span></span><a class="headerlink" href="#arena.config.Config.OPENAI_API_KEY" title="Link to this definition"></a></dt>
+<dd><p>API key for accessing OpenAI models (e.g., gpt-3.5-turbo).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.Config.UPLOAD_FOLDER">
+<span class="sig-name descname"><span class="pre">UPLOAD_FOLDER</span></span><a class="headerlink" href="#arena.config.Config.UPLOAD_FOLDER" title="Link to this definition"></a></dt>
+<dd><p>Local filesystem path for file uploads.
+Created automatically if it doesn’t exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">GOOGLE_CLIENT_ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">GOOGLE_CLIENT_SECRET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">GOOGLE_DISCOVERY_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://accounts.google.com/.well-known/openid-configuration'</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">MAIL_DEFAULT_SENDER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'no-reply&#64;promptarena.com'</span></em><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">MAIL_PASSWORD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">MAIL_PORT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">587</span></em><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">MAIL_SERVER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'smtp.gmail.com'</span></em><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">MAIL_USERNAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">MAIL_USE_SSL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">MAIL_USE_TLS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">OPENAI_API_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">OTP_EXPIRY_MINUTES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">OTP_SECRET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'super_secret_otp_key'</span></em><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">SECRET_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fallback_secret_key_for_development'</span></em><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_DATABASE_URI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sqlite:///prompt_arena.db'</span></em><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_TRACK_MODIFICATIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">UPLOAD_FOLDER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'C:\\Users\\scend\\OneDrive\\Desktop\\prompt_arena\\uploads'</span></em><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="arena.config.DevelopmentConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">arena.config.</span></span><span class="sig-name descname"><span class="pre">DevelopmentConfig</span></span><a class="reference internal" href="_modules/arena/config.html#DevelopmentConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.config.DevelopmentConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#arena.config.Config" title="arena.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a></p>
+<p>Configuration for development environment.</p>
+<p>Enables debug mode and SQL query logging for easier troubleshooting.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.DevelopmentConfig.DEBUG">
+<span class="sig-name descname"><span class="pre">DEBUG</span></span><a class="headerlink" href="#arena.config.DevelopmentConfig.DEBUG" title="Link to this definition"></a></dt>
+<dd><p>Enables Flask debug mode (auto-reload, detailed errors).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.DevelopmentConfig.SQLALCHEMY_ECHO">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_ECHO</span></span><a class="headerlink" href="#arena.config.DevelopmentConfig.SQLALCHEMY_ECHO" title="Link to this definition"></a></dt>
+<dd><p>Logs all SQL statements to stdout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">DEBUG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_ECHO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="arena.config.ProductionConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">arena.config.</span></span><span class="sig-name descname"><span class="pre">ProductionConfig</span></span><a class="reference internal" href="_modules/arena/config.html#ProductionConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.config.ProductionConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#arena.config.Config" title="arena.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a></p>
+<p>Configuration for production environment.</p>
+<p>Prioritizes security and stability.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.ProductionConfig.DEBUG">
+<span class="sig-name descname"><span class="pre">DEBUG</span></span><a class="headerlink" href="#arena.config.ProductionConfig.DEBUG" title="Link to this definition"></a></dt>
+<dd><p>Disabled to prevent sensitive debug traces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.ProductionConfig.SECRET_KEY">
+<span class="sig-name descname"><span class="pre">SECRET_KEY</span></span><a class="headerlink" href="#arena.config.ProductionConfig.SECRET_KEY" title="Link to this definition"></a></dt>
+<dd><p>Must be set via environment variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.ProductionConfig.SESSION_COOKIE_SECURE">
+<span class="sig-name descname"><span class="pre">SESSION_COOKIE_SECURE</span></span><a class="headerlink" href="#arena.config.ProductionConfig.SESSION_COOKIE_SECURE" title="Link to this definition"></a></dt>
+<dd><p>Ensures cookies are only sent over HTTPS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.ProductionConfig.REMEMBER_COOKIE_SECURE">
+<span class="sig-name descname"><span class="pre">REMEMBER_COOKIE_SECURE</span></span><a class="headerlink" href="#arena.config.ProductionConfig.REMEMBER_COOKIE_SECURE" title="Link to this definition"></a></dt>
+<dd><p>Same as above, for “remember me” tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">DEBUG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">REMEMBER_COOKIE_SECURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">SECRET_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id22" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">SESSION_COOKIE_SECURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="arena.config.TestingConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">arena.config.</span></span><span class="sig-name descname"><span class="pre">TestingConfig</span></span><a class="reference internal" href="_modules/arena/config.html#TestingConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#arena.config.TestingConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#arena.config.Config" title="arena.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a></p>
+<p>Configuration for unit and integration testing.</p>
+<p>Uses in-memory database and disables CSRF for easier form testing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.TestingConfig.TESTING">
+<span class="sig-name descname"><span class="pre">TESTING</span></span><a class="headerlink" href="#arena.config.TestingConfig.TESTING" title="Link to this definition"></a></dt>
+<dd><p>Enables test mode in Flask.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.TestingConfig.SQLALCHEMY_DATABASE_URI">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_DATABASE_URI</span></span><a class="headerlink" href="#arena.config.TestingConfig.SQLALCHEMY_DATABASE_URI" title="Link to this definition"></a></dt>
+<dd><p>Uses SQLite in-memory DB for speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="arena.config.TestingConfig.WTF_CSRF_ENABLED">
+<span class="sig-name descname"><span class="pre">WTF_CSRF_ENABLED</span></span><a class="headerlink" href="#arena.config.TestingConfig.WTF_CSRF_ENABLED" title="Link to this definition"></a></dt>
+<dd><p>Disables CSRF protection to simplify test forms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">SQLALCHEMY_DATABASE_URI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sqlite:///:memory:'</span></em><a class="headerlink" href="#id24" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id25">
+<span class="sig-name descname"><span class="pre">TESTING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id25" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id26">
+<span class="sig-name descname"><span class="pre">WTF_CSRF_ENABLED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id26" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Prompt Arena’s Documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
