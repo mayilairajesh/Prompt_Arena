@@ -1,0 +1,99 @@
+<!-- templates/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - PromptArena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #667eea);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #4ecdc4;
+            color: #1e3c72;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🚀 Join PromptArena</h2>
+        <p>Enter your email to begin registration</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div style="padding: 12px; background: rgba(255,255,255,0.15); border-radius: 8px; margin: 10px 0;">
+                    {% for category, message in messages %}
+                        <p style="color: {% if category == 'error' %}#ff6b6b{% else %}#4ecdc4{% endif %};">
+                            {{ message }}
+                        </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('main.signup') }}">
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <button type="submit">Send OTP</button>
+        </form>
+    </div>
+</body>
+</html>

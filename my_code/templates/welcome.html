@@ -1,9 +1,12 @@
+<!-- welcome.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Welcome - PromptArena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
@@ -11,7 +14,6 @@
         }
 
         body {
-            margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298, #667eea);
             color: white;
@@ -115,7 +117,35 @@
             background: #4ecdc4;
         }
 
-        /* Footer Links (Leaderboard & Payment) */
+        .profile-suggestion {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .profile-suggestion p {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .profile-suggestion a {
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .profile-suggestion a:hover {
+            background: #ffca00;
+            transform: scale(1.05);
+        }
+
         .footer-links {
             margin-top: 20px;
             font-size: 0.95em;
@@ -139,8 +169,8 @@
     <nav class="navbar">
         <h2>🎮 PromptArena</h2>
         <div>
-            <a href="{{ url_for('welcome') }}">Home</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('main.welcome') }}">Home</a>
+            <a href="{{ url_for('main.logout') }}">Logout</a>
         </div>
     </nav>
 
@@ -150,17 +180,24 @@
             <h1>🎮 Welcome, {{ user.first_name }}!</h1>
             <p class="subtitle">Ready to battle in the arena of creativity?</p>
 
-            <a href="{{ url_for('prompting_space') }}" class="btn-primary">Enter Prompting Space</a>
-            <a href="{{ url_for('leaderboard') }}" class="btn-primary btn-secondary">View Leaderboard</a>
+            <a href="{{ url_for('main.prompting_space') }}" class="btn-primary">Enter Prompting Space</a>
+            <a href="{{ url_for('main.leaderboard') }}" class="btn-primary btn-secondary">View Leaderboard</a>
 
-            <!-- Additional Labels as per Excel PRD -->
-             <div class="profile-suggestion">
+            <!-- Show only if user is still a guest -->
+            {% if user.is_guest %}
+            <div class="profile-suggestion">
                 <p>👋 Hi Guest! Want to personalize your profile?</p>
-                <a href="{{ url_for('complete_profile') }}" class="btn">Complete My Profile</a>
-             </div>
+                <a href="{{ url_for('main.complete_profile') }}" class="btn">Complete My Profile</a>
+            </div>
+            {% else %}
+            <p style="font-size:0.95em; opacity:0.8;">You're all set! Keep battling to climb the leaderboard.</p>
+            {% endif %}
+
+            <!-- Footer Links -->
             <div class="footer-links">
-                <a href="{{ url_for('leaderboard') }}">🏆 Leaderboard</a> |
-                <a href="{{ url_for('payment') }}">💳 Payment Info</a>
+
+                <a href="{{ url_for('main.payment') }}">💳 Payment Info</a>
+
             </div>
         </div>
     </div>

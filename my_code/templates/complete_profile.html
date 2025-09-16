@@ -1,11 +1,11 @@
+<!-- complete_profile.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up - PromptArena</title>
+    <title>Complete Profile - PromptArena</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
@@ -23,10 +23,9 @@
             padding: 20px;
         }
 
-        /* Auth Container */
         .auth-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             border-radius: 20px;
@@ -49,8 +48,12 @@
         }
 
         .auth-header h2 {
-            font-size: 1.8em;
+            font-size: 1.9em;
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .auth-header p {
@@ -62,26 +65,11 @@
             padding: 30px;
         }
 
-        /* Flash Messages */
-        .flash-messages {
-            margin: 10px 0;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            font-size: 0.95em;
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        .flash-messages .error {
-            color: #ff6b6b;
-        }
-
-        .flash-messages .info {
-            color: #4ecdc4;
-        }
-
-        /* Form Inputs */
         input[type="text"],
-        input[type="email"],
         input[type="password"] {
             width: 100%;
             padding: 14px;
@@ -97,32 +85,24 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        input:focus {
-            outline: none;
-            border-color: #ff6b6b;
-        }
-
-        /* Submit Button */
         button[type="submit"] {
             width: 100%;
             padding: 14px;
-            background: #ff6b6b;
-            color: white;
+            background: #4ecdc4;
+            color: #1e3c72;
             border: none;
             border-radius: 8px;
             font-size: 1.1em;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
             transition: all 0.3s;
         }
 
         button[type="submit"]:hover {
-            background: #e55c5c;
+            background: #44c1b5;
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Link Text */
         .link-text {
             text-align: center;
             margin-top: 20px;
@@ -142,67 +122,36 @@
     </style>
 </head>
 <body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/SVG_star_icon.svg" alt="✨" width="30"> Complete Your Profile</h2>
+            <p>Upgrade to a full account and save your prompt battle history forever.</p>
+        </div>
 
-<div class="auth-container">
-    <div class="auth-header">
-        <h2>🚀 Join PromptArena</h2>
-        <p>Create your account to start battling with AI-powered prompts</p>
-    </div>
+        <div class="auth-body">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="{{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
-    <div class="auth-body">
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <p class="{{ category }}">{{ message }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+            <form method="POST" action="{{ url_for('main.complete_profile') }}">
+                <input type="text" name="first_name" placeholder="First Name" required>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+                <input type="text" name="mobile_number" placeholder="Mobile Number (Optional)">
+                <input type="password" name="password" placeholder="Set Password">
+                <button type="submit">Save & Continue</button>
+            </form>
 
-        <!-- Sign Up Form -->
-        <form method="POST" action="{{ url_for('signup') }}">
-            <input 
-                type="text" 
-                name="first_name" 
-                placeholder="First Name" 
-                required 
-                autofocus
-            >
-            <input 
-                type="text" 
-                name="last_name" 
-                placeholder="Last Name" 
-                required 
-            >
-            <input 
-                type="email" 
-                name="email" 
-                placeholder="Email Address" 
-                required 
-            >
-            <input 
-                type="text" 
-                name="mobile_number" 
-                placeholder="Mobile Number (Optional)" 
-            >
-            <input 
-                type="password" 
-                name="password" 
-                placeholder="Create Password" 
-                required 
-                minlength="6"
-            >
-            <button type="submit">Create Account</button>
-        </form>
-
-        <!-- Login Link -->
-        <div class="link-text">
-            Already have an account? <a href="{{ url_for('login') }}">Log In</a>
+            <div class="link-text">
+                <a href="{{ url_for('main.welcome') }}">Skip for now</a>
+            </div>
         </div>
     </div>
-</div>
-
 </body>
 </html>

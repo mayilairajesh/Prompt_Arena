@@ -1,0 +1,32 @@
+<!-- battle_arena_1v1.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Turn - {{ battle.topic | truncate(30) }} - PromptArena</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f2f5; }
+    .container { max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    textarea { width: 100%; height: 150px; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #2c7be5; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+    .topic { background: #eef5ff; padding: 15px; border-radius: 8px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Your Turn in 1v1 Battle</h1>
+
+    <div class="topic">
+      <strong>Topic:</strong> {{ battle.topic }}<br>
+      <em>Level: {{ battle.level }} | Battle ID: #{{ battle.id }}</em>
+    </div>
+
+    <form method="post">
+      <textarea name="prompt" placeholder="Write your creative prompt here..." required></textarea>
+      <button type="submit">Submit Prompt & Wait</button>
+    </form>
+
+    <p><small>💡 The AI will compare your prompt with your opponent’s based on creativity, clarity, and relevance.</small></p>
+    <a href="{{ url_for('main.welcome') }}">← Exit Battle</a>
+  </div>
+</body>
+</html>

@@ -1,60 +1,107 @@
-<!-- templates/prompting_space.html -->
+<!-- prompting_space.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Prompting Space - Prompt Arena</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pVZLvW56H8Y+wj05S9nMkQZ9LjQ8NQH7828v9p4l5b5H5qFzY8fE7cN6fcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    /* Prompting Space Specific Styles */
+    /* Background Animation */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f0f23;
+      color: white;
+      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .cube {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(0, 195, 255, 0.4);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+      animation: float 20s infinite linear;
+    }
+
+    .cube:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .cube:nth-child(2) { top: 40%; left: 70%; animation-delay: 2s; }
+    .cube:nth-child(3) { top: 60%; left: 20%; animation-delay: 4s; }
+    .cube:nth-child(4) { top: 10%; left: 80%; animation-delay: 6s; }
+    .cube:nth-child(5) { top: 70%; left: 50%; animation-delay: 8s; }
+    .cube:nth-child(6) { top: 30%; left: 40%; animation-delay: 10s; }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+      50% { transform: translate(100px, 100px) rotate(180deg); opacity: 0.7; }
+      100% { transform: translate(200px, 0) rotate(360deg); opacity: 0.3; }
+    }
+
+    /* Main Container */
     .prompt-container {
       max-width: 800px;
-      margin: 40px auto;
-      padding: 30px;
-      background: rgba(15, 15, 35, 0.8);
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(15, 15, 35, 0.85);
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(0, 195, 255, 0.3);
-    }
-
-    .prompt-header {
-      text-align: center;
-      margin-bottom: 30px;
+      position: relative;
+      z-index: 10;
     }
 
     .prompt-header h1 {
       font-family: 'Orbitron', sans-serif;
       color: #00c3ff;
       text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .prompt-header p {
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       font-size: 18px;
       color: #fff;
+      font-family: 'Orbitron', sans-serif;
     }
 
     .options {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 18px;
       margin-top: 10px;
     }
 
     .option {
       flex: 1 1 200px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       color: #fff;
       text-align: center;
@@ -65,14 +112,26 @@
     .option:hover, .option.selected {
       background: rgba(0, 195, 255, 0.2);
       border-color: #00c3ff;
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
 
     .option i {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: 32px;
+      margin-bottom: 12px;
       color: #00c3ff;
+    }
+
+    .option div {
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+
+    .option small {
+      display: block;
+      font-size: 0.85em;
+      opacity: 0.7;
+      margin-top: 6px;
     }
 
     .submit-btn {
@@ -97,11 +156,18 @@
       filter: brightness(1.1);
     }
 
+    .submit-btn:disabled {
+      opacity: 0.6;
+      filter: brightness(0.8);
+      transform: none;
+    }
+
     .back-link {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 25px;
       color: #00c3ff;
       text-decoration: none;
+      font-size: 0.95em;
     }
 
     .back-link:hover {
@@ -126,7 +192,7 @@
       <p>Welcome, <strong>{{ user.first_name }}</strong>! Choose your battle mode and level.</p>
     </div>
 
-    <form method="POST" action="{{ url_for('prompting_space') }}">
+    <form method="POST" action="{{ url_for('main.prompting_space') }}" id="promptForm">
 
       <!-- Level Selection -->
       <div class="form-group">
@@ -175,40 +241,56 @@
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="submit-btn">
+      <button type="submit" class="submit-btn" id="submitBtn">
         <i class="fas fa-play"></i> Start Battle
       </button>
 
     </form>
 
-    <a href="{{ url_for('welcome') }}" class="back-link">
+    <a href="{{ url_for('main.welcome') }}" class="back-link">
       <i class="fas fa-arrow-left"></i> Back to Welcome
     </a>
   </div>
 
   <script>
     function selectOption(element, fieldName) {
-      // Remove selected class from siblings
       const parent = element.parentElement;
       parent.querySelectorAll('.option').forEach(el => {
         el.classList.remove('selected');
       });
 
-      // Add selected class
       element.classList.add('selected');
 
-      // Set hidden input value
-      document.getElementById(fieldName).value = element.querySelector('div').innerText.trim();
+      // Update hidden input
+      const input = document.getElementById(fieldName);
+      input.value = element.querySelector('div').innerText.trim();
+
+      // Enable submit button
+      document.getElementById('submitBtn').disabled = false;
     }
 
-    // Optional: Play sound on hover
+    // Prevent form submission if no selection
+    document.getElementById('promptForm').onsubmit = function(e) {
+      const level = document.getElementById('level').value;
+      const battleType = document.getElementById('battle_type').value;
+
+      if (!level || !battleType) {
+        e.preventDefault();
+        alert("Please select both a level and a battle type.");
+        return false;
+      }
+    };
+
+    // Optional: Sound on hover (auto-play may be blocked)
+    /*
     const hoverSound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3');
     document.querySelectorAll('.option').forEach(el => {
       el.addEventListener('mouseenter', () => {
         hoverSound.currentTime = 0;
-        hoverSound.play().catch(e => console.log("Audio blocked"));
+        hoverSound.play().catch(e => console.log("Audio play prevented"));
       });
     });
+    */
   </script>
 
 </body>

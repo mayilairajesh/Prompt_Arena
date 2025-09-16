@@ -1,0 +1,35 @@
+<!-- battle_create.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create 1v1 Battle - PromptArena</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f2f5; }
+    .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    input, select, textarea, button {
+      margin: 10px 0; padding: 10px; width: 100%; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;
+    }
+    button { background: #2c7be5; color: white; cursor: pointer; }
+    button:hover { background: #1a68d1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚔️ Create a 1v1 Battle</h1>
+    <form method="post">
+      <label>Difficulty Level *</label>
+      <select name="level" required>
+        <option value="Basic">Basic</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Pro">Pro</option>
+      </select>
+
+      <label>Custom Topic (Optional)</label>
+      <input type="text" name="topic" placeholder="E.g., A ghost haunts a spaceship..." />
+
+      <button type="submit">Create Battle & Wait for Opponent</button>
+    </form>
+    <a href="{{ url_for('main.welcome') }}">← Back to Home</a>
+  </div>
+</body>
+</html>

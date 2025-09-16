@@ -1,0 +1,43 @@
+<!-- battle_result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Battle Result - PromptArena</title>
+</head>
+<body style="font-family:Arial;padding:20px;">
+  <div style="max-width:800px;margin:auto;">
+    <h1>🏆 Battle Result</h1>
+
+    {% if winner.id == current_user.id %}
+      <h2 style="color:green;">🎉 You Won!</h2>
+    {% else %}
+      <h2 style="color:red;">💥 You Lost!</h2>
+    {% endif %}
+
+    <h3>Topic: {{ battle.topic }}</h3>
+
+    <div style="display:flex;gap:20px;margin:30px 0;">
+      <!-- Your Submission -->
+      <div style="flex:1;background:#e6f7ff;padding:15px;border-radius:8px;">
+        <h4>🟢 You</h4>
+        <p><strong>Score: {{ '%.1f'|format(my_submission.overall_score) }}/10</strong></p>
+        <p>{{ my_submission.feedback }}</p>
+      </div>
+
+      <!-- Opponent -->
+      {% if opponent_submission %}
+      <div style="flex:1;background:#fff7e6;padding:15px;border-radius:8px;">
+        <h4>🔴 Opponent</h4>
+        <p><strong>Score: {{ '%.1f'|format(opponent_submission.overall_score) }}/10</strong></p>
+        <p>{{ opponent_submission.feedback }}</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <p><strong>Winner: {{ winner.first_name }} {{ winner.last_name }}</strong></p>
+
+    <a href="{{ url_for('main.create_battle') }}" style="margin-right:10px;">⚔️ Start New Battle</a>
+    <a href="{{ url_for('main.leaderboard') }}">🏆 View Leaderboard</a>
+  </div>
+</body>
+</html>

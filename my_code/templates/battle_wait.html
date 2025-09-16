@@ -1,0 +1,25 @@
+<!-- battle_wait.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wait for Opponent - PromptArena</title>
+  <meta http-equiv="refresh" content="10"> <!-- Auto-refresh every 10s -->
+</head>
+<body style="font-family:Arial;padding:20px;text-align:center;">
+  <h1>⏳ Waiting for Opponent...</h1>
+  <p>You’ve submitted your prompt:</p>
+  <blockquote>{{ my_submission.prompt_text if my_submission else "Not submitted yet." }}</blockquote>
+
+  {% if opponent %}
+    <p>👤 Opponent: <strong>{{ opponent.first_name }} {{ opponent.last_name }}</strong> has joined!</p>
+    <p>We’ll evaluate both prompts as soon as they submit.</p>
+  {% else %}
+    <p>🔗 Share this link to invite someone: <br>
+    <code>{{ request.url_root }}battle/join/{{ battle.id }}</code></p>
+    <p>Or just wait — another user might join anytime!</p>
+  {% endif %}
+
+  <p><em>Page auto-refreshes every 10 seconds...</em></p>
+  <a href="{{ url_for('main.welcome') }}">Back to Home</a>
+</body>
+</html>

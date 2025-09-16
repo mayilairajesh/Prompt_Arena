@@ -1,31 +1,77 @@
-<!-- templates/battle_arena.html -->
+<!-- battle_arena.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Battle Arena - Prompt Arena</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pVZLvW56H8Y+wj05S9nMkQZ9LjQ8NQH7828v9p4l5b5H5qFzY8fE7cN6fcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    /* Battle Arena Specific Styles */
+    /* Background Animation */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f0f23;
+      color: white;
+      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .cube {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(0, 195, 255, 0.4);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+      animation: float 20s infinite linear;
+    }
+
+    .cube:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .cube:nth-child(2) { top: 40%; left: 70%; animation-delay: 2s; }
+    .cube:nth-child(3) { top: 60%; left: 20%; animation-delay: 4s; }
+    .cube:nth-child(4) { top: 10%; left: 80%; animation-delay: 6s; }
+    .cube:nth-child(5) { top: 70%; left: 50%; animation-delay: 8s; }
+    .cube:nth-child(6) { top: 30%; left: 40%; animation-delay: 10s; }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+      50% { transform: translate(100px, 100px) rotate(180deg); opacity: 0.7; }
+      100% { transform: translate(200px, 0) rotate(360deg); opacity: 0.3; }
+    }
+
+    /* Main Container */
     .battle-container {
       max-width: 900px;
-      margin: 40px auto;
-      padding: 30px;
+      margin: 60px auto;
+      padding: 40px;
       background: rgba(15, 15, 35, 0.85);
       border-radius: 16px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(0, 195, 255, 0.4);
       position: relative;
-      overflow: hidden;
+      z-index: 10;
     }
 
-    .battle-header {
-      text-align: center;
-      margin-bottom: 30px;
+    .battle-header h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00c3ff;
+      text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+      margin-bottom: 10px;
     }
 
     .badge {
@@ -34,7 +80,7 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 14px;
       border-radius: 20px;
-      margin: 0 10px;
+      margin: 0 8px;
       font-weight: bold;
     }
 
@@ -55,13 +101,10 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 12px;
       padding: 20px;
-      margin: 20px 0;
+      margin: 25px 0;
       font-style: italic;
       color: #ccc;
-    }
-
-    .prompt-form {
-      margin-top: 20px;
+      line-height: 1.6;
     }
 
     textarea#user_prompt {
@@ -98,31 +141,55 @@
       transition: all 0.3s ease;
     }
 
-    .submit-btn:hover {
+    .submit-btn:hover:not(:disabled) {
       transform: translateY(-3px);
       filter: brightness(1.1);
     }
 
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .back-link {
       display: block;
-      margin-top: 20px;
+      margin-top: 25px;
       color: #00c3ff;
       text-align: center;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 0.95em;
     }
 
     .back-link:hover {
       text-decoration: underline;
     }
 
-    /* Timer (Optional) */
+    /* Timer */
     .timer {
       font-family: 'Orbitron', sans-serif;
       font-size: 24px;
       color: #ff4de0;
       text-align: center;
-      margin: 10px 0;
+      margin: 15px 0;
+    }
+
+    /* Loading Spinner */
+    .loading {
+      text-align: center;
+      margin: 20px 0;
+      color: #00c3ff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1em;
+    }
+
+    .loading i {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -148,7 +215,7 @@
     </div>
 
     <!-- Optional Timer -->
-    <!-- <div class="timer" id="countdown">Time: 05:00</div> -->
+    <div class="timer" id="countdown">Time: 05:00</div>
 
     <!-- Challenge Topic -->
     <div class="topic-card">
@@ -157,37 +224,41 @@
     </div>
 
     <!-- Prompt Submission Form -->
-    <form method="POST" action="{{ url_for('battle_arena') }}" class="prompt-form">
+    <form method="POST" action="{{ url_for('main.battle_arena') }}" id="promptForm">
       <label for="user_prompt"><i class="fas fa-edit"></i> Write Your Prompt</label>
-      <textarea 
-        id="user_prompt" 
-        name="user_prompt" 
+      <textarea
+        id="user_prompt"
+        name="user_prompt"
         placeholder="Type your creative prompt here... Be original, clear, and engaging!"
         required></textarea>
 
-      <button type="submit" class="submit-btn">
+      <button type="submit" class="submit-btn" id="submitBtn">
         <i class="fas fa-bolt"></i> Submit Prompt for Evaluation
       </button>
     </form>
 
-    <a href="{{ url_for('prompting_space') }}" class="back-link">
+    <!-- Loading Indicator -->
+    <div class="loading" id="loading" style="display: none;">
+      <i class="fas fa-spinner"></i> Evaluating your prompt with AI...
+    </div>
+
+    <a href="{{ url_for('main.prompting_space') }}" class="back-link">
       <i class="fas fa-arrow-left"></i> Back to Prompting Space
     </a>
   </div>
 
-  <!-- Optional: Sound on Submit -->
+  <!-- Audio on Submit -->
   <audio id="submitSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
 
   <script>
     // Play sound on submit
-    document.querySelector('form').addEventListener('submit', function() {
+    document.getElementById('promptForm').addEventListener('submit', function() {
       const sound = document.getElementById('submitSound');
       sound.currentTime = 0;
-      sound.play().catch(e => console.log("Audio blocked"));
+      sound.play().catch(e => console.log("Audio play blocked by browser"));
     });
 
-    // Optional: Countdown Timer (5 minutes)
-    /*
+    // Countdown Timer (5 minutes)
     let timeLeft = 5 * 60; // 5 minutes
     const timerDisplay = document.getElementById('countdown');
     const timer = setInterval(() => {
@@ -198,10 +269,18 @@
 
       if (timeLeft < 0) {
         clearInterval(timer);
-        alert("Time's up! Submit your prompt.");
+        timerDisplay.style.color = "#ff6b6b";
+        timerDisplay.textContent = "⏰ Time's up!";
+        document.getElementById('submitBtn').disabled = true;
+        alert("Time's up! Please submit your prompt now.");
       }
     }, 1000);
-    */
+
+    // Show loading spinner on submit
+    document.getElementById('promptForm').addEventListener('submit', function() {
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('loading').style.display = 'block';
+    });
   </script>
 
 </body>
