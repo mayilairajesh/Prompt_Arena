@@ -11,3 +11,6 @@ psycopg2-binary
 Flask-Migrate
 gunicorn
 render-cli
+sphinx
+sphinx-rtd-theme
+sphinx-autodoc-typehints
